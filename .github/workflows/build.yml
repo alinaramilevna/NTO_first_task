@@ -1,0 +1,33 @@
+name: Build EXE
+
+on:
+  push:
+    branches:
+      - main  # Запускаем workflow при пуше в ветку main
+
+jobs:
+  build:
+    runs-on: windows-latest  # Используем виртуальную машину с Windows
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3  # Проверяем код из репозитория
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.9'  # Устанавливаем версию Python
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install pyinstaller  # Устанавливаем PyInstaller и другие зависимости, если нужно
+
+      - name: Build EXE
+        run: pyinstaller --onefile your_script.py  # Укажите свой скрипт
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v3  # Загружаем .exe файл как артефакт
+        with:
+          name: exe-file
+          path: dist/  # Путь к скомпилированному .exe файлу
