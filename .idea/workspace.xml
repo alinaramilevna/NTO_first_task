@@ -4,13 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="89fada5c-ae19-4dec-a66a-dfea32d79810" name="Changes" comment="add ui in *.py files (/ui/)">
-      <change afterPath="$PROJECT_DIR$/db/CRUD.py" afterDir="false" />
+    <list default="true" id="89fada5c-ae19-4dec-a66a-dfea32d79810" name="Changes" comment="added ui">
+      <change afterPath="$PROJECT_DIR$/ui/perehod.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ui/first_widget.py" beforeDir="false" afterPath="$PROJECT_DIR$/ui/first_widget.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ui/orders.py" beforeDir="false" afterPath="$PROJECT_DIR$/ui/orders.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ui/products_types.py" beforeDir="false" afterPath="$PROJECT_DIR$/ui/products_types.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ui/users_ui.py" beforeDir="false" afterPath="$PROJECT_DIR$/ui/users_ui.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -58,6 +55,35 @@
       <recent name="$PROJECT_DIR$" />
     </key>
   </component>
+  <component name="RunManager">
+    <configuration name="first_widget" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="NTO_frst_task" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/ui" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/ui/first_widget.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Python.first_widget" />
+      </list>
+    </recent_temporary>
+  </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
@@ -82,7 +108,15 @@
       <option name="project" value="LOCAL" />
       <updated>1731931862425</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="added ui">
+      <option name="closed" value="true" />
+      <created>1731990108789</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1731990108789</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -98,6 +132,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="add ui in *.py files (/ui/)" />
-    <option name="LAST_COMMIT_MESSAGE" value="add ui in *.py files (/ui/)" />
+    <MESSAGE value="added ui" />
+    <option name="LAST_COMMIT_MESSAGE" value="added ui" />
   </component>
 </project>

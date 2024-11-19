@@ -1,8 +1,10 @@
-import sys
 import io
+import sys
 
-from PyQt5.QtWidgets import QWidget, QApplication
 from PyQt5 import uic
+from PyQt5.QtWidgets import QWidget, QApplication
+
+from ui.perehod import PerehodWidget
 
 template = '''<?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
@@ -19,7 +21,7 @@ template = '''<?xml version="1.0" encoding="UTF-8"?>
   <property name="windowTitle">
    <string>Form</string>
   </property>
-  <widget class="QPushButton" name="pushButton">
+  <widget class="QPushButton" name="commercialPushButton">
    <property name="geometry">
     <rect>
      <x>70</x>
@@ -32,7 +34,7 @@ template = '''<?xml version="1.0" encoding="UTF-8"?>
     <string>Коммерческая слубжа</string>
    </property>
   </widget>
-  <widget class="QPushButton" name="pushButton_2">
+  <widget class="QPushButton" name="proizvodstvoPushButton">
    <property name="geometry">
     <rect>
      <x>70</x>
@@ -45,7 +47,7 @@ template = '''<?xml version="1.0" encoding="UTF-8"?>
     <string>Служба производства</string>
    </property>
   </widget>
-  <widget class="QPushButton" name="pushButton_3">
+  <widget class="QPushButton" name="techPushButton">
    <property name="geometry">
     <rect>
      <x>70</x>
@@ -71,6 +73,25 @@ class StartWidget(QWidget):
         super().__init__()
         f = io.StringIO(template)
         uic.loadUi(f, self)
+
+        self.commercialPushButton.clicked.connect(self.createPerehodWindowCommercial)
+        self.proizvodstvoPushButton.clicked.connect(self.createPerehodWindowProizvodstsvo)
+        self.techPushButton.clicked.connect(self.createPerehodWindowTech)
+
+    def createPerehodWindowCommercial(self):
+        widget = PerehodWidget('commercial')
+        widget.show()
+        self.close()
+
+    def createPerehodWindowProizvodstsvo(self):
+        widget = PerehodWidget('proizvodstvo')
+        widget.show()
+        self.close()
+
+    def createPerehodWindowTech(self):
+        widget = PerehodWidget('tech')
+        widget.show()
+        self.close()
 
 
 def except_hook(cls, exception, traceback):
