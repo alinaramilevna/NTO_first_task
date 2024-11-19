@@ -24,7 +24,7 @@ jobs:
           pip install pyinstaller pyqt5 sqlalchemy  # Устанавливаем PyInstaller и другие зависимости, если нужно
 
       - name: Build EXE
-        run: pyinstaller --onefile --noconsole ui/first_first_widget.py  # Укажите свой скрипт
+        run: pyinstaller --onefile --noconsole ui/first_widget.py  # Укажите свой скрипт
 
       - name: Upload artifact
         uses: actions/upload-artifact@v3  # Загружаем .exe файл как артефакт
