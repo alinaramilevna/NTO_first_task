@@ -3,7 +3,7 @@ name: Build EXE
 on:
   push:
     branches:
-      - main  # Запускаем workflow при пуше в ветку main
+      - develop  # Запускаем workflow при пуше в ветку main
 
 jobs:
   build:
