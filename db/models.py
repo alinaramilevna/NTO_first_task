@@ -39,19 +39,6 @@ class Type(Base):
     )
 
 
-class Status(Base):
-    __tablename__ = 'statuses'
-
-    id = sqlalchemy.Column(
-        sqlalchemy.Integer,
-        primary_key=True
-    )
-    title = sqlalchemy.Column(
-        sqlalchemy.String,
-        unique=True
-    )
-
-
 class Order(Base):
     __tablename__ = 'orders'
     id = sqlalchemy.Column(
@@ -60,24 +47,15 @@ class Order(Base):
     )
 
     time_registration = sqlalchemy.Column(
-        sqlalchemy.DateTime,
-        default=datetime.datetime.now(datetime.UTC)
+        sqlalchemy.String
     )
 
     time_ready = sqlalchemy.Column(
-        sqlalchemy.DateTime,
-        default=datetime.datetime.now(datetime.UTC)
+        sqlalchemy.String
     )
 
-    user_id = sqlalchemy.Column(
-        sqlalchemy.Integer,
-        sqlalchemy.ForeignKey('users.id'),
-        nullable=True
-    )
-
-    type_id = sqlalchemy.Column(
-        sqlalchemy.Integer,
-        sqlalchemy.ForeignKey('types.id')
+    user = sqlalchemy.Column(
+        sqlalchemy.String
     )
 
     count = sqlalchemy.Column(
@@ -88,18 +66,10 @@ class Order(Base):
         sqlalchemy.String
     )
 
-    status_id = sqlalchemy.Column(
-        sqlalchemy.Integer,
-        sqlalchemy.ForeignKey('statuses.id')
+    type = sqlalchemy.Column(
+        sqlalchemy.String
     )
 
-    def __init__(self, user_id=None, type_id=None, count=None, **kwargs):
-        super().__init__(**kwargs)
-        self.user_id = user_id
-        self.type_id = type_id
-        self.count = count
-        self.status = 'Черновик' if not user_id or not type_id or not count else 'Согласован клиентом'
-
-    __table_args__ = (
-        sqlalchemy.CheckConstraint(count >= 0, name='check_bar_positive'),
-        {})
+    status = sqlalchemy.Column(
+        sqlalchemy.String
+    )

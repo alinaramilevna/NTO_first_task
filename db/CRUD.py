@@ -2,8 +2,9 @@ from contextlib import contextmanager
 from typing import Type, Optional, Callable
 
 from sqlalchemy.exc import SQLAlchemyError
+from sqlalchemy.orm import Session
 
-from db.models import Base
+from db.models import Base, Order
 
 
 class CRUDBase:
@@ -66,13 +67,37 @@ class CRUDUser(CRUDBase):
     pass
 
 
-class CRUDType(CRUDBase):
+class CRUDProducts(CRUDBase):
     pass
 
 
-class CRUDStatus(CRUDBase):
-    pass
+class CRUDOrder:
+    def __init__(self, model: Order):
+        self.model = model
 
+    def get(self, db: Session, order_id: int) -> Optional[Order]:
+        return db.query(self.model).filter(self.model.id == order_id).first()
 
-class CRUDOrder(CRUDBase):
-    pass
+    def get_all(self, db: Session) -> list[Order]:
+        return db.query(self.model).all()
+
+    def create(self, db: Session, order_data: dict) -> Order:
+        db_order = self.model(**order_data)
+        db.add(db_order)
+        db.commit()
+        db.refresh(db_order)
+        return db_order
+
+    def update(self, db: Session, order_id: int, order_data: dict) -> Order:
+        db_order = db.query(self.model).filter(self.model.id == order_id).first()
+        for key, value in order_data.items():
+            setattr(db_order, key, value)
+        db.add(db_order)
+        db.commit()
+        db.refresh(db_order)
+        return db_order
+
+    def delete(self, db: Session, order_id: int) -> None:
+        db_order = db.query(self.model).filter(self.model.id == order_id).first()
+        db.delete(db_order)
+        db.commit()

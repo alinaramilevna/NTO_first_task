@@ -4,15 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="89fada5c-ae19-4dec-a66a-dfea32d79810" name="Changes" comment="добавила переходы из служб в сервисы с моделями">
+    <list default="true" id="89fada5c-ae19-4dec-a66a-dfea32d79810" name="Changes" comment="добавила юзеров!!!">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app.py" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/db/CRUD.py" beforeDir="false" afterPath="$PROJECT_DIR$/db/CRUD.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/db/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/db/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ui/first_widget.py" beforeDir="false" afterPath="$PROJECT_DIR$/ui/first_widget.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/ui/orders.py" beforeDir="false" afterPath="$PROJECT_DIR$/ui/orders.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ui/perehod.py" beforeDir="false" afterPath="$PROJECT_DIR$/ui/perehod.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ui/products_types.py" beforeDir="false" afterPath="$PROJECT_DIR$/ui/products_types.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ui/users_ui.py" beforeDir="false" afterPath="$PROJECT_DIR$/ui/users_ui.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -137,7 +136,15 @@
       <option name="project" value="LOCAL" />
       <updated>1731999604657</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="добавила юзеров!!!">
+      <option name="closed" value="true" />
+      <created>1732003517741</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1732003517741</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -156,6 +163,7 @@
     <MESSAGE value="added ui" />
     <MESSAGE value="added perehod window" />
     <MESSAGE value="добавила переходы из служб в сервисы с моделями" />
-    <option name="LAST_COMMIT_MESSAGE" value="добавила переходы из служб в сервисы с моделями" />
+    <MESSAGE value="добавила юзеров!!!" />
+    <option name="LAST_COMMIT_MESSAGE" value="добавила юзеров!!!" />
   </component>
 </project>
