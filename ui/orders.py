@@ -162,7 +162,7 @@ template = '''<?xml version="1.0" encoding="UTF-8"?>
 
 
 class OrdersWidget(QMainWindow):
-    def __init__(self):
+    def __init__(self, db_session):
         super().__init__()
         f = io.StringIO(template)
         uic.loadUi(f, self)

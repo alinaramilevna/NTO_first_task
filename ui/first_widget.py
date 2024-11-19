@@ -4,6 +4,7 @@ import sys
 from PyQt5 import uic
 from PyQt5.QtWidgets import QWidget, QApplication
 
+from db.engine import EngineController
 from ui.perehod import PerehodWidget
 
 template = '''<?xml version="1.0" encoding="UTF-8"?>
@@ -68,10 +69,13 @@ template = '''<?xml version="1.0" encoding="UTF-8"?>
 
 
 class StartWidget(QWidget):
-    def __init__(self):
+    def __init__(self, engine_controller):
         super().__init__()
         f = io.StringIO(template)
         uic.loadUi(f, self)
+
+        self.engine_controller = engine_controller
+        self.db_session = self.engine_controller.get_session
 
         self.commercialPushButton.clicked.connect(self.createPerehodWindowCommercial)
         self.proizvodstvoPushButton.clicked.connect(self.createPerehodWindowProizvodstvo)
@@ -80,7 +84,7 @@ class StartWidget(QWidget):
     def createPerehodWindow(self, service_type):
         """Открывает новое окно и закрывает текущее."""
         self.hide()  # Скрываем текущее окно
-        self.perehod_window = PerehodWidget(service_type)
+        self.perehod_window = PerehodWidget(service_type, self.db_session)
         self.perehod_window.show()
 
     def createPerehodWindowCommercial(self):
@@ -98,8 +102,11 @@ def except_hook(cls, exception, traceback):
 
 
 if __name__ == '__main__':
+    engine_controller = EngineController()
+    engine_controller.init_db()
+
     app = QApplication(sys.argv)
-    ex = StartWidget()
+    ex = StartWidget(engine_controller)
     ex.show()
     sys.excepthook = except_hook
     sys.exit(app.exec())

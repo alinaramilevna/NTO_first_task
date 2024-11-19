@@ -70,10 +70,12 @@ template = '''<?xml version="1.0" encoding="UTF-8"?>
 
 
 class PerehodWidget(QWidget):
-    def __init__(self, service: str):
+    def __init__(self, service: str, db_session):
         super().__init__()
         f = io.StringIO(template)
         uic.loadUi(f, self)
+
+        self.db_session = db_session
 
         if service == 'commercial':
             pass
@@ -88,15 +90,15 @@ class PerehodWidget(QWidget):
         self.productionPushButton.clicked.connect(self.clickedProductsPushButton)
 
     def clickedUsersPushButton(self):
-        self.usersWindow = UsersWidget()
+        self.usersWindow = UsersWidget(self.db_session)
         self.usersWindow.show()
 
     def clickedOrdersPushButton(self):
-        self.ordersWindow = OrdersWidget()
+        self.ordersWindow = OrdersWidget(self.db_session)
         self.ordersWindow.show()
 
     def clickedProductsPushButton(self):
-        self.productsWindow = ProductsWidget()
+        self.productsWindow = ProductsWidget(self.db_session)
         self.productsWindow.show()
 
 

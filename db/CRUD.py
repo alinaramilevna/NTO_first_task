@@ -1,58 +1,65 @@
-from typing import Type, List, Optional
+from contextlib import contextmanager
+from typing import Type, Optional, Callable
 
-from sqlalchemy.orm import Session
+from sqlalchemy.exc import SQLAlchemyError
+
+from db.models import Base
 
 
 class CRUDBase:
     def __init__(self, model: Type[Base]):
-        """
-        Базовый CRUD класс для работы с моделями.
-        :param model: SQLAlchemy модель.
-        """
         self.model = model
 
-    def get(self, db: Session, id: int) -> Optional[Base]:
-        """
-        Получение записи по ID.
-        """
-        return db.query(self.model).filter(self.model.id == id).first()
+    def get(self, db_session: Callable[[], contextmanager], id: int) -> Optional[Base]:
+        try:
+            with db_session() as session:
+                return session.query(self.model).filter(self.model.id == id).first()
+        except SQLAlchemyError as e:
+            print(f"Error fetching record by ID: {e}")
+            return None
 
-    def get_all(self, db: Session) -> List[Base]:
-        """
-        Получение всех записей.
-        """
-        return db.query(self.model).all()
+    def get_all(self, db_session: Callable[[], contextmanager]) -> list[Base]:
+        try:
+            with db_session() as session:
+                return session.query(self.model).all()
+        except SQLAlchemyError as e:
+            print(f"Error fetching all records: {e}")
+            return []
 
-    def create(self, db: Session, obj_in: dict) -> Base:
-        """
-        Создание новой записи.
-        :param obj_in: Словарь с данными для создания записи.
-        """
-        db_obj = self.model(**obj_in)
-        db.add(db_obj)
-        db.commit()
-        db.refresh(db_obj)
-        return db_obj
+    def create(self, db_session: Callable[[], contextmanager], obj_in: dict) -> Optional[Base]:
+        try:
+            with db_session() as session:
+                db_obj = self.model(**obj_in)
+                session.add(db_obj)
+                session.commit()
+                session.refresh(db_obj)
+                return db_obj
+        except SQLAlchemyError as e:
+            print(f"Error creating record: {e}")
+            return None
 
-    def update(self, db: Session, db_obj: Base, obj_in: dict) -> Base:
-        """
-        Обновление существующей записи.
-        :param db_obj: Объект из базы данных.
-        :param obj_in: Словарь с обновляемыми данными.
-        """
-        for field, value in obj_in.items():
-            setattr(db_obj, field, value)
-        db.add(db_obj)
-        db.commit()
-        db.refresh(db_obj)
-        return db_obj
+    def update(self, db_session: Callable[[], contextmanager], db_obj: Base, obj_in: dict) -> Optional[Base]:
+        try:
+            with db_session() as session:
+                for field, value in obj_in.items():
+                    setattr(db_obj, field, value)
+                session.add(db_obj)
+                session.commit()
+                session.refresh(db_obj)
+                return db_obj
+        except SQLAlchemyError as e:
+            print(f"Error updating record: {e}")
+            return None
 
-    def delete(self, db: Session, db_obj: Base) -> None:
-        """
-        Удаление записи.
-        """
-        db.delete(db_obj)
-        db.commit()
+    def delete(self, db_session: Callable[[], contextmanager], db_obj: Base) -> bool:
+        try:
+            with db_session() as session:
+                session.delete(db_obj)
+                session.commit()
+                return True
+        except SQLAlchemyError as e:
+            print(f"Error deleting record: {e}")
+            return False
 
 
 class CRUDUser(CRUDBase):

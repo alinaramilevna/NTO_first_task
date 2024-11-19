@@ -13,6 +13,7 @@ class User(Base):
     __tablename__ = 'users'
 
     id = sqlalchemy.Column(
+        sqlalchemy.Integer,
         primary_key=True
     )
 
@@ -29,6 +30,7 @@ class Type(Base):
     __tablename__ = 'types'
 
     id = sqlalchemy.Column(
+        sqlalchemy.Integer,
         primary_key=True
     )
     title = sqlalchemy.Column(
@@ -41,6 +43,7 @@ class Status(Base):
     __tablename__ = 'statuses'
 
     id = sqlalchemy.Column(
+        sqlalchemy.Integer,
         primary_key=True
     )
     title = sqlalchemy.Column(
@@ -52,6 +55,7 @@ class Status(Base):
 class Order(Base):
     __tablename__ = 'orders'
     id = sqlalchemy.Column(
+        sqlalchemy.Integer,
         primary_key=True
     )
 
@@ -88,10 +92,6 @@ class Order(Base):
         sqlalchemy.Integer,
         sqlalchemy.ForeignKey('statuses.id')
     )
-
-    user = sqlalchemy.orm.relationship('User', back_populates='orders')
-    status = sqlalchemy.orm.relationship('Status', back_populates='statuses')
-    type = sqlalchemy.orm.relationship('Type', back_populates='types')
 
     def __init__(self, user_id=None, type_id=None, count=None, **kwargs):
         super().__init__(**kwargs)

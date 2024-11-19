@@ -1,8 +1,10 @@
 import io
-import sys
 
 from PyQt5 import uic
-from PyQt5.QtWidgets import QApplication, QMainWindow
+from PyQt5.QtWidgets import QMainWindow, QTableWidgetItem
+
+from db.CRUD import CRUDUser
+from db.models import User
 
 template = '''<?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
@@ -79,7 +81,7 @@ template = '''<?xml version="1.0" encoding="UTF-8"?>
      </rect>
     </property>
     <property name="text">
-     <string>                                ИМЯ КЛИЕНТА</string>
+     <string>введите имя клиента</string>
     </property>
    </widget>
    <widget class="QLineEdit" name="lineEdit_2">
@@ -92,7 +94,7 @@ template = '''<?xml version="1.0" encoding="UTF-8"?>
      </rect>
     </property>
     <property name="text">
-     <string>                                ФАМИЛИЯ КЛИЕНТА</string>
+     <string>введите фамилию клиента</string>
     </property>
    </widget>
   </widget>
@@ -115,19 +117,49 @@ template = '''<?xml version="1.0" encoding="UTF-8"?>
 
 
 class UsersWidget(QMainWindow):
-    def __init__(self):
+    def __init__(self, db_session):
         super().__init__()
         f = io.StringIO(template)
         uic.loadUi(f, self)
 
+        self.db_session = db_session
+        self.crud_user = CRUDUser(User)
 
-def except_hook(cls, exception, traceback):
-    sys.__excepthook__(cls, exception, traceback)
+        self.pushButton.clicked.connect(self.save_changes)
+        self.pushButton_2.clicked.connect(self.load_data)
 
+        self.tableWidget.setColumnCount(3)
+        self.tableWidget.setHorizontalHeaderLabels(["ID", "Имя", "Фамилия"])
 
-if __name__ == '__main__':
-    app = QApplication(sys.argv)
-    ex = UsersWidget()
-    ex.show()
-    sys.excepthook = except_hook
-    sys.exit(app.exec())
+        self.load_data()
+
+    def load_data(self):
+        self.create_user()
+        users = self.crud_user.get_all(self.db_session)
+
+        self.tableWidget.setRowCount(len(users))
+        for row_idx, user in enumerate(users):
+            self.tableWidget.setItem(row_idx, 0, QTableWidgetItem(str(user.id)))
+            self.tableWidget.setItem(row_idx, 1, QTableWidgetItem(user.name))
+            self.tableWidget.setItem(row_idx, 2, QTableWidgetItem(user.surname))
+
+    def save_changes(self):
+        """
+        Сохраняет изменения из таблицы в базу данных.
+        """
+        for row in range(self.tableWidget.rowCount()):
+            user_id = self.tableWidget.item(row, 0).text()
+            name = self.tableWidget.item(row, 1).text()
+            surname = self.tableWidget.item(row, 2).text()
+
+            user = self.crud_user.get(self.db_session, int(user_id))
+            if user:
+                self.crud_user.update(self.db_session, user, {"name": name, "surname": surname})
+            else:
+                self.crud_user.create(self.db_session, {"id": user_id, "name": name, "surname": surname})
+
+    def create_user(self):
+        name = self.lineEdit.text()
+        surname = self.lineEdit_2.text()
+        if name != 'введите имя клиента' and surname != 'введите фамилию клиента':
+            self.crud_user.create(self.db_session, {'name': name, 'surname': surname})
