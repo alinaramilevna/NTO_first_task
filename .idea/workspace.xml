@@ -4,10 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="89fada5c-ae19-4dec-a66a-dfea32d79810" name="Changes" comment="added ui">
-      <change afterPath="$PROJECT_DIR$/ui/perehod.py" afterDir="false" />
+    <list default="true" id="89fada5c-ae19-4dec-a66a-dfea32d79810" name="Changes" comment="added perehod window">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ui/first_widget.py" beforeDir="false" afterPath="$PROJECT_DIR$/ui/first_widget.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ui/perehod.py" beforeDir="false" afterPath="$PROJECT_DIR$/ui/perehod.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -33,19 +33,19 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Python.engine.executor": "Run",
-    "Python.first_widget.executor": "Run",
-    "Python.models.executor": "Run",
-    "Python.orders.executor": "Run",
-    "Python.products_types.executor": "Run",
-    "Python.users_ui.executor": "Run",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "last_opened_file_path": "/Users/user/PycharmProjects/NTO_frst_task/ui"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Python.engine.executor&quot;: &quot;Run&quot;,
+    &quot;Python.first_widget.executor&quot;: &quot;Run&quot;,
+    &quot;Python.models.executor&quot;: &quot;Run&quot;,
+    &quot;Python.orders.executor&quot;: &quot;Run&quot;,
+    &quot;Python.products_types.executor&quot;: &quot;Run&quot;,
+    &quot;Python.users_ui.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/user/PycharmProjects/NTO_frst_task/ui&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/ui" />
@@ -116,7 +116,15 @@
       <option name="project" value="LOCAL" />
       <updated>1731990108789</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="added perehod window">
+      <option name="closed" value="true" />
+      <created>1731991566326</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1731991566326</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -133,6 +141,7 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="add ui in *.py files (/ui/)" />
     <MESSAGE value="added ui" />
-    <option name="LAST_COMMIT_MESSAGE" value="added ui" />
+    <MESSAGE value="added perehod window" />
+    <option name="LAST_COMMIT_MESSAGE" value="added perehod window" />
   </component>
 </project>

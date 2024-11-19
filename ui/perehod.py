@@ -4,8 +4,11 @@ import sys
 from PyQt5 import uic
 from PyQt5.QtWidgets import QWidget, QApplication
 
-template = '''
-<?xml version="1.0" encoding="UTF-8"?>
+from ui.orders import OrdersWidget
+from ui.products_types import ProductsWidget
+from ui.users_ui import UsersWidget
+
+template = '''<?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
  <class>Form</class>
  <widget class="QWidget" name="Form">
@@ -75,18 +78,26 @@ class PerehodWidget(QWidget):
         if service == 'commercial':
             pass
         elif service == 'proizvodstvo':
-            pass
+            self.usersPushButton.setEnabled(False)
         elif service == 'tech':
-            pass
+            self.usersPushButton.setEnabled(False)
+            self.ordersPushButton.setEnabled(False)
 
-    def usersPushButton(self):
-        pass
+        self.usersPushButton.clicked.connect(self.clickedUsersPushButton)
+        self.ordersPushButton.clicked.connect(self.clickedOrdersPushButton)
+        self.productionPushButton.clicked.connect(self.clickedProductsPushButton)
 
-    def ordersPushButton(self):
-        pass
+    def clickedUsersPushButton(self):
+        self.usersWindow = UsersWidget()
+        self.usersWindow.show()
 
-    def productsPushButton(self):
-        pass
+    def clickedOrdersPushButton(self):
+        self.ordersWindow = OrdersWidget()
+        self.ordersWindow.show()
+
+    def clickedProductsPushButton(self):
+        self.productsWindow = ProductsWidget()
+        self.productsWindow.show()
 
 
 def except_hook(cls, exception, traceback):

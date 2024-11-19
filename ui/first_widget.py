@@ -31,7 +31,7 @@ template = '''<?xml version="1.0" encoding="UTF-8"?>
     </rect>
    </property>
    <property name="text">
-    <string>Коммерческая слубжа</string>
+    <string>Коммерческая служба</string>
    </property>
   </widget>
   <widget class="QPushButton" name="proizvodstvoPushButton">
@@ -64,7 +64,6 @@ template = '''<?xml version="1.0" encoding="UTF-8"?>
  <resources/>
  <connections/>
 </ui>
-
 '''
 
 
@@ -75,23 +74,23 @@ class StartWidget(QWidget):
         uic.loadUi(f, self)
 
         self.commercialPushButton.clicked.connect(self.createPerehodWindowCommercial)
-        self.proizvodstvoPushButton.clicked.connect(self.createPerehodWindowProizvodstsvo)
+        self.proizvodstvoPushButton.clicked.connect(self.createPerehodWindowProizvodstvo)
         self.techPushButton.clicked.connect(self.createPerehodWindowTech)
 
-    def createPerehodWindowCommercial(self):
-        widget = PerehodWidget('commercial')
-        widget.show()
-        self.close()
+    def createPerehodWindow(self, service_type):
+        """Открывает новое окно и закрывает текущее."""
+        self.hide()  # Скрываем текущее окно
+        self.perehod_window = PerehodWidget(service_type)
+        self.perehod_window.show()
 
-    def createPerehodWindowProizvodstsvo(self):
-        widget = PerehodWidget('proizvodstvo')
-        widget.show()
-        self.close()
+    def createPerehodWindowCommercial(self):
+        self.createPerehodWindow('commercial')
+
+    def createPerehodWindowProizvodstvo(self):
+        self.createPerehodWindow('proizvodstvo')
 
     def createPerehodWindowTech(self):
-        widget = PerehodWidget('tech')
-        widget.show()
-        self.close()
+        self.createPerehodWindow('tech')
 
 
 def except_hook(cls, exception, traceback):
